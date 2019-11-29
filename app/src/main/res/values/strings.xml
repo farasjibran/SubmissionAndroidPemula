@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">KumpulanSMA(DEPOK)</string>
+    <string name="school_name" />
+    <string name="detail" />
+    <string name="_6_photos">6 Photos</string>
+    <string name="Favorite">Favorite</string>
+    <string name="muhammad_farras_jibran">Muhammad Farras Jibran</string>
+    <string name="dipost_oleh">Di Post Oleh</string>
+    <string name="content_text" />
+    <string name="text_head" />
+</resources>
