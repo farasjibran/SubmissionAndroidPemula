@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,12 +32,18 @@ public class MainActivity extends AppCompatActivity {
         rvSchool.setLayoutManager(new LinearLayoutManager(this));
         ListSchoolAdapter listSchoolAdapter = new ListSchoolAdapter(list);
         rvSchool.setAdapter(listSchoolAdapter);
-        listSchoolAdapter.setOnItemClickCallback(new ListSchoolAdapter.OnItemClickCallback() {
+        ItemClickSupport.addTo(rvSchool).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
-            public void onItemClicked(School data) {
-                showSelectedSchool(data);
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                showSelectedItem(list.get(position));
             }
         });
+    }
+
+    private void showSelectedItem(School school){
+        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        intent.putExtra(DetailActivity.EXTRA_SCHOOL, school);
+        startActivity(intent);
     }
 
     private void showSelectedSchool(School school) {

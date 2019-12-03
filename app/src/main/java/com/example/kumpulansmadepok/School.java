@@ -1,6 +1,9 @@
 package com.example.kumpulansmadepok;
 
-public class School {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class School implements Parcelable {
     private String name;
     private String detail;
     private int photo;
@@ -28,4 +31,37 @@ public class School {
     public void setPhoto(int photo) {
         this.photo = photo;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.detail);
+        dest.writeInt(this.photo);
+    }
+
+    public School() {
+    }
+
+    protected School(Parcel in) {
+        this.name = in.readString();
+        this.detail = in.readString();
+        this.photo = in.readInt();
+    }
+
+    public static final Parcelable.Creator<School> CREATOR = new Parcelable.Creator<School>() {
+        @Override
+        public School createFromParcel(Parcel source) {
+            return new School(source);
+        }
+
+        @Override
+        public School[] newArray(int size) {
+            return new School[size];
+        }
+    };
 }
